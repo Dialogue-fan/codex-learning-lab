@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Codex 游戏练习：几何生存</title>
+<style>body{background:#14212c;color:#e8f1f5;font:18px system-ui;max-width:700px;margin:30px auto;padding:16px}canvas{background:#243946;width:100%;border:1px solid #567}button{padding:10px 20px;font:inherit}p{line-height:1.6}</style>
+<h1>几何生存 · 教学起点</h1><p>方向键或 WASD 移动蓝色角色，躲避红色追踪者。碰撞后结束。点击游戏区域使其获得焦点。</p>
+<canvas id="game" width="640" height="400" tabindex="0" aria-label="几何生存游戏，使用方向键移动"></canvas>
+<p id="status" aria-live="polite"></p><button id="restart">重新开始</button>
+<script type="module">
+import {initialState,update} from './core.js';
+const canvas=document.querySelector('#game'),ctx=canvas.getContext('2d'),status=document.querySelector('#status');
+let state=initialState(),last=performance.now(); const keys=new Set();
+const controls=['arrowup','arrowdown','arrowleft','arrowright','w','a','s','d'];
+canvas.addEventListener('keydown',e=>{const k=e.key.toLowerCase();if(controls.includes(k)){e.preventDefault();keys.add(k);}});
+window.addEventListener('keyup',e=>keys.delete(e.key.toLowerCase()));
+window.addEventListener('blur',()=>keys.clear()); canvas.addEventListener('blur',()=>keys.clear());
+document.querySelector('#restart').onclick=()=>{state=initialState();keys.clear();last=performance.now();canvas.focus();};
+function frame(now){
+ const dt=(now-last)/1000;last=now;
+ update(state,{left:keys.has('a')||keys.has('arrowleft'),right:keys.has('d')||keys.has('arrowright'),up:keys.has('w')||keys.has('arrowup'),down:keys.has('s')||keys.has('arrowdown')},dt);
+ ctx.clearRect(0,0,640,400);
+ for(const [body,color] of [[state.player,'#69d6f2'],[state.enemy,'#ff8278']]){ctx.fillStyle=color;ctx.beginPath();ctx.arc(body.x,body.y,body.r,0,Math.PI*2);ctx.fill();}
+ const message=(state.over?'本局结束 · ':'生存时间 · ')+state.elapsed.toFixed(1)+' 秒';
+ if(status.textContent!==message)status.textContent=message;
+ requestAnimationFrame(frame);
+}
+requestAnimationFrame(frame);
+</script></html>

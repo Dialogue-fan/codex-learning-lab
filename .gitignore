@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+.learning/
+workbook/*
+!workbook/README.md
+.DS_Store

@@ -1,0 +1,226 @@
+[
+  {
+    "id": "00",
+    "title": "诊断与环境",
+    "stage": "101",
+    "minutes": 30,
+    "path": "lessons/00.md",
+    "question": "没有浏览器自动化工具，是否能完成本课？",
+    "options": [
+      "A. 不能，必须安装全部 MCP",
+      "B. 能，先做已有工具支持的检查",
+      "C. 可以声称浏览器验证已通过"
+    ],
+    "answer": "B",
+    "hint": "先区分需要验证的行为和目前可用的工具。",
+    "artifact": "workbook/00-profile.md：经验、入口、引擎偏好、每次可用时间、工具检查结果。"
+  },
+  {
+    "id": "01",
+    "title": "一次说清任务",
+    "stage": "101",
+    "minutes": 45,
+    "path": "lessons/01.md",
+    "question": "哪条反馈更有效？",
+    "options": [
+      "A. 再高级一点",
+      "B. 彻底重写",
+      "C. 点击重开后分数仍保留，请复现并验证重开后为零"
+    ],
+    "answer": "C",
+    "hint": "反馈要能复现，并能判断什么时候修好了。",
+    "artifact": "workbook/01-task.md：原始指令、改写版、三条验收、一次修改原因。"
+  },
+  {
+    "id": "02",
+    "title": "上下文与短计划",
+    "stage": "101",
+    "minutes": 45,
+    "path": "lessons/02.md",
+    "question": "何时应该扩大读取范围？",
+    "options": [
+      "A. 当前证据不足以确定依赖时",
+      "B. 每个任务开始都读所有文件",
+      "C. 永远不允许读取其他目录"
+    ],
+    "answer": "A",
+    "hint": "限制无关读取，但不能限制获取必要证据。",
+    "artifact": "workbook/02-context.md：三个相关路径及用途、计划、一个未确定问题。"
+  },
+  {
+    "id": "03",
+    "title": "游戏最小可玩版本",
+    "stage": "101",
+    "minutes": 60,
+    "path": "lessons/03.md",
+    "question": "暂停恢复后玩家突然飞走，先检查什么？",
+    "options": [
+      "A. 更换整套美术",
+      "B. 时间差与状态恢复",
+      "C. 增加敌人数量"
+    ],
+    "answer": "B",
+    "hint": "暂停前后的时间基准是否一致？",
+    "artifact": "workbook/03-playtest.md：启动命令、操作步骤、实际结果、改动说明。"
+  },
+  {
+    "id": "04",
+    "title": "游戏设计与手感沟通",
+    "stage": "201",
+    "minutes": 60,
+    "path": "lessons/04.md",
+    "question": "测试两套手感时同时改十个参数，主要问题是什么？",
+    "options": [
+      "A. 无法判断哪个变化产生影响",
+      "B. 所有游戏都禁止调参",
+      "C. 参数越多越省 token"
+    ],
+    "answer": "A",
+    "hint": "一次改变一个关键变量，便于解释因果。",
+    "artifact": "workbook/04-design.md：循环、参数表、三次观察、最终选择和理由。"
+  },
+  {
+    "id": "05",
+    "title": "长期规则与会话衔接",
+    "stage": "201",
+    "minutes": 45,
+    "path": "lessons/05.md",
+    "question": "项目规则越来越长，最好怎么处理？",
+    "options": [
+      "A. 永久删掉所有验收",
+      "B. 把所有文档强制每次读完",
+      "C. 保留短规则，按适用任务引用详细资料"
+    ],
+    "answer": "C",
+    "hint": "规则要准确可用，详细资料按任务读取。",
+    "artifact": "workbook/05-rules.md：规则草稿、适用范围、新会话是否成功接手。"
+  },
+  {
+    "id": "06",
+    "title": "用证据修 Bug 与验证",
+    "stage": "201",
+    "minutes": 60,
+    "path": "lessons/06.md",
+    "question": "为了省 token 可以直接省掉必要验证吗？",
+    "options": [
+      "A. 可以，代码看起来对就行",
+      "B. 不行，应按风险选择必要检查",
+      "C. 必须把全套测试重复十遍"
+    ],
+    "answer": "B",
+    "hint": "验证要产生有用证据，既不跳过也不无目的重复。",
+    "artifact": "workbook/06-debug.md：失败证据、原因、修复后验证、对游戏的迁移案例。"
+  },
+  {
+    "id": "07",
+    "title": "Git、审查与恢复",
+    "stage": "201",
+    "minutes": 45,
+    "path": "lessons/07.md",
+    "question": "想撤销已经分享的一个独立提交，通常优先？",
+    "options": [
+      "A. git revert 生成撤销提交",
+      "B. 删除整个仓库",
+      "C. 随意强推覆盖他人提交"
+    ],
+    "answer": "A",
+    "hint": "保留可追踪历史，先确认依赖与工作区状态。",
+    "artifact": "workbook/07-review.md：提交标识、diff 说明、撤销方式、一次风险判断。"
+  },
+  {
+    "id": "08",
+    "title": "Skills、MCP 与可复用流程",
+    "stage": "301",
+    "minutes": 60,
+    "path": "lessons/08.md",
+    "question": "MCP 的主要用途是？",
+    "options": [
+      "A. 自动保证零 token",
+      "B. 取代所有任务提示",
+      "C. 连接外部工具和上下文"
+    ],
+    "answer": "C",
+    "hint": "工具连接解决获取和执行能力，不保证节省用量。",
+    "artifact": "workbook/08-skill.md：技能草稿、四个触发用例、MCP 是否必要的判断。"
+  },
+  {
+    "id": "09",
+    "title": "功能逆向：观察与实验",
+    "stage": "201",
+    "minutes": 60,
+    "path": "lessons/09.md",
+    "question": "两个实现对所有已测输入输出相同，能说明什么？",
+    "options": [
+      "A. 已证明源码完全相同",
+      "B. 当前实验还不能区分它们",
+      "C. 可以随意认定内部结构"
+    ],
+    "answer": "B",
+    "hint": "相同行为不等于相同源码。",
+    "artifact": "workbook/09-observations.md：至少六组输入输出、三个假设、区分实验、剩余未知。"
+  },
+  {
+    "id": "10",
+    "title": "功能逆向：独立实现与差异验证",
+    "stage": "201",
+    "minutes": 75,
+    "path": "lessons/10.md",
+    "question": "最能提升复现可信度的是？",
+    "options": [
+      "A. 更多形容词",
+      "B. 相同代码文件名",
+      "C. 能区分假设的保留用例与边界测试"
+    ],
+    "answer": "C",
+    "hint": "测试应揭露错误规则，而不是只重放已知样例。",
+    "artifact": "workbook/10-replica.md：规则规格、实现说明、保留样例、差异矩阵和限制。"
+  },
+  {
+    "id": "11",
+    "title": "省 token 的沟通实验",
+    "stage": "301",
+    "minutes": 60,
+    "path": "lessons/11.md",
+    "question": "多代理并行通常可以保证什么？",
+    "options": [
+      "A. 不保证省 token，可能缩短等待",
+      "B. 必定总用量更少",
+      "C. 不需要整合与验证"
+    ],
+    "answer": "A",
+    "hint": "并行增加上下文和协调成本，需用实测判断。",
+    "artifact": "workbook/11-efficiency.md：两次记录、同一验收结果、用量可见性、结论与局限。"
+  },
+  {
+    "id": "12",
+    "title": "Worktree、云端与稳定自动化",
+    "stage": "301",
+    "minutes": 60,
+    "path": "lessons/12.md",
+    "question": "何时适合定时自动化？",
+    "options": [
+      "A. 流程还经常猜测时",
+      "B. 手动稳定、有清楚输入输出及失败处理时",
+      "C. 为了避免任何验收时"
+    ],
+    "answer": "B",
+    "hint": "自动化稳定的方法，才有可预测结果。",
+    "artifact": "workbook/12-workflow.md：隔离方案、汇合验证、环境要求、停止条件。"
+  },
+  {
+    "id": "13",
+    "title": "毕业项目与迁移",
+    "stage": "综合",
+    "minutes": 90,
+    "path": "lessons/13.md",
+    "question": "最终证明学会的最好方式是？",
+    "options": [
+      "A. 看完所有视频",
+      "B. 背出全部命令",
+      "C. 独立完成新任务并给出验证证据"
+    ],
+    "answer": "C",
+    "hint": "迁移与解释比观看进度更能反映掌握程度。",
+    "artifact": "workbook/13-final.md：任务书、观察规格、提交、验证证据、用量记录、已知限制。"
+  }
+]
