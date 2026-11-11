@@ -49,8 +49,8 @@ class CoachTests(unittest.TestCase):
     def test_curriculum_and_markdown_links(self):
         import re
         lessons=json.loads((ROOT/'curriculum.json').read_text())
-        self.assertEqual(len(lessons),21)
-        self.assertEqual([item['id'] for item in lessons], [f'{n:02d}' for n in range(21)])
+        self.assertEqual(len(lessons),23)
+        self.assertEqual([item['id'] for item in lessons], [f'{n:02d}' for n in range(23)])
         for item in lessons:
             self.assertTrue((ROOT/item['path']).is_file())
         for file in ROOT.rglob('*.md'):
@@ -62,7 +62,17 @@ class CoachTests(unittest.TestCase):
             with self.subTest(lesson=lesson['id']):
                 self.assertIn(lesson['title'], self.run_coach('start', lesson['id']).stdout)
                 self.assertIn('概念检查通过', self.run_coach('quiz', lesson['id'], '--answer', lesson['answer']).stdout)
-        self.assertIn('00–20', self.run_coach('start', '99').stderr)
+        self.assertIn('00–22', self.run_coach('start', '99').stderr)
+
+    def test_worked_example_preserves_input_and_filters_scores(self):
+        spec=importlib.util.spec_from_file_location('score_fix',ROOT/'examples/score_fix.py')
+        module=importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        for values, expected in [([],0),([-3,-1],0),([0],0),([3,-2,5],8)]:
+            with self.subTest(values=values):
+                original=values.copy()
+                self.assertEqual(module.positive_score(values),expected)
+                self.assertEqual(values,original)
 
     def test_oracle_invalid_input_and_repeatability(self):
         cmd=[sys.executable,str(ROOT/'labs/reverse/oracle.py'),'--attack','12','--armor','5']
