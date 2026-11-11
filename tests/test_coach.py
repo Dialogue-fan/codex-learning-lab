@@ -49,13 +49,21 @@ class CoachTests(unittest.TestCase):
     def test_curriculum_and_markdown_links(self):
         import re
         lessons=json.loads((ROOT/'curriculum.json').read_text())
-        self.assertEqual(len(lessons),14)
+        self.assertEqual(len(lessons),21)
+        self.assertEqual([item['id'] for item in lessons], [f'{n:02d}' for n in range(21)])
         for item in lessons:
             self.assertTrue((ROOT/item['path']).is_file())
         for file in ROOT.rglob('*.md'):
             for target in re.findall(r'\]\(([^)]+)\)',file.read_text(encoding='utf-8')):
                 if '://' not in target and not target.startswith('#'):
                     self.assertTrue((file.parent/target.split('#')[0]).exists(),f'{file}: {target}')
+    def test_extension_lessons_are_navigable_and_quizzable(self):
+        for lesson in json.loads((ROOT/'curriculum.json').read_text())[14:]:
+            with self.subTest(lesson=lesson['id']):
+                self.assertIn(lesson['title'], self.run_coach('start', lesson['id']).stdout)
+                self.assertIn('概念检查通过', self.run_coach('quiz', lesson['id'], '--answer', lesson['answer']).stdout)
+        self.assertIn('00–20', self.run_coach('start', '99').stderr)
+
     def test_oracle_invalid_input_and_repeatability(self):
         cmd=[sys.executable,str(ROOT/'labs/reverse/oracle.py'),'--attack','12','--armor','5']
         one=subprocess.check_output(cmd,text=True)

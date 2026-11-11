@@ -44,7 +44,7 @@ def main(argv=None):
             lesson_id = next((x['id'] for x in lessons if state.get(x['id'], {}).get('status') != '反馈通过'), lessons[-1]['id'])
         lesson = next((x for x in lessons if x['id'] == lesson_id), None)
         if not lesson:
-            raise ValueError('无效课号，请使用 00–13。')
+            raise ValueError(f"无效课号，请使用 {lessons[0]['id']}–{lessons[-1]['id']}。")
         if args.cmd == 'start':
             print((ROOT/lesson['path']).read_text(encoding='utf-8'))
             print(f'\n给 Codex：请按 TUTOR.md 带我做第 {lesson_id} 课。先等我回答，再提示；最后按证据验收。')
